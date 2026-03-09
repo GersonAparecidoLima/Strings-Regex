@@ -1,0 +1,66 @@
+package br.com.alura;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		/*
+		 * String professor = "Jacqueline Oliveira";
+		 * 
+		 * String disciplina = "Java e Programação Orientada a Objetos";
+		 * 
+		 * String curriculo = "" + "Pós-graduada em Engenharia e " +
+		 * "Arquitetura de Software; " + "Desenvolvedora backend Java desde 2010; " +
+		 * ""; //Existem duas formas principais Formatando Strings
+		 * 
+		 * String texto = String.format("Disciplina: %s - %s", disciplina, professor);
+		 * System.out.println(texto);
+		 * 
+		 * System.out.printf("Nome: %s %nDisciplina: %s", professor, disciplina);
+		 */
+		
+		/*
+		 
+		 * Símbolo	Descrição
+				.	Caractere, exceto quebra de linha
+				\d	Dígito (0-9)
+				\D	Caractere que não é um dígito
+				\w	Caractere alfanumérico
+				\W	Caractere não alfanumérico
+				\s	Espaço em branco
+				\S	Caractere que não é espaço em branco
+				^	Início da string
+				$	Fim da string
+		*/
+		
+		
+		/*
+		 * \\w+ Busca por um ou mais caracteres de "palavra" (letras, números ou
+		 * underline _). O primeiro busca o nome do usuário (jacqueline).
+		 * 
+		 * @ Busca literalmente pelo caractere arroba. \\w+ Busca por um ou mais
+		 * caracteres de palavra após o @ (gmail). . Atenção aqui: No Regex, o ponto .
+		 * significa "qualquer caractere". Para buscar um ponto literal (como o do
+		 * .com), o ideal seria usar \\.. \\w+ Busca pela extensão final (com).*
+		 */
+
+		String texto = "Meu email é jacqueline@gmail.com";
+		
+		//A classe Pattern do pacote java.util.regex compila a expressão regular para que o computador possa processá-la com eficiência
+		
+		Pattern pattern = Pattern.compile("\\w+@\\w+.\\w+");
+
+		//Enquanto o Pattern define o que estamos procurando, 
+		//o Matcher é o motor que realmente realiza a busca dentro da sua String.
+	    Matcher matcher = pattern.matcher(texto);
+	    
+	    //Recupera a fatia de texto exata que o find() localizou.
+	    //o group() causará um erro (IllegalStateException), porque o "ponteiro" da busca ainda não saberia onde começar.
+	    if (matcher.find()) {
+	        System.out.println(matcher.group());
+	    }
+	}
+
+}
